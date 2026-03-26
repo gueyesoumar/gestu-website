@@ -4,8 +4,7 @@
 <style>
 /* ── PILIERS ── */
 .pillars-grid { display:grid;grid-template-columns:1fr 1fr;gap:28px; }
-.pillar-card.coming { background:linear-gradient(145deg,#1a1a2e,#2a2a3e);border:1px solid rgba(255,255,255,.08);opacity:.85; }
-.coming-badge { display:inline-flex;align-items:center;gap:6px;background:rgba(201,168,76,.12);border:1px solid rgba(201,168,76,.2);border-radius:20px;padding:4px 12px;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.12em;color:var(--gold);margin-bottom:20px; }
+.coming-badge { display:inline-flex;align-items:center;gap:6px;background:rgba(201,168,76,.12);border:1px solid rgba(201,168,76,.2);border-radius:20px;padding:2px 10px;font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--gold);margin-left:8px;vertical-align:middle; }
 .pillar-card { border-radius:22px;padding:44px;position:relative;overflow:hidden;transition:transform .25s,box-shadow .25s; }
 .pillar-card:hover { transform:translateY(-5px);box-shadow:0 24px 60px rgba(0,0,0,.15); }
 .pillar-card.green { background:linear-gradient(145deg,var(--green),var(--green2));border:1px solid rgba(255,255,255,.08); }
@@ -24,7 +23,6 @@
 .pillar-mention { font-size:12px;color:rgba(255,255,255,.35);margin-top:16px;font-style:italic; }
 @media(max-width:900px){
   .pillars-grid { grid-template-columns:1fr; }
-  .pillars-grid-3 { grid-template-columns:1fr !important; }
 }
 </style>
 
@@ -34,8 +32,7 @@
     <div class="tag tag-green"><span>Ce que nous faisons</span></div>
     <h2>Deux piliers,<br/>une vision <em>intégrée</em></h2>
     <p class="sub">Le conseil pose la stratégie. La plateforme l'exécute. Ensemble, ils transforment la gouvernance en avantage compétitif.</p>
-    <p class="sub" style="font-size:13px;color:var(--muted);margin-bottom:28px;margin-top:-36px">Et bientôt, un troisième produit pour les fonds d'investissement.</p>
-    <div class="pillars-grid pillars-grid-3" style="grid-template-columns:1fr 1fr 1fr">
+    <div class="pillars-grid">
       <div class="pillar-card green">
         <div class="pillar-icon">🧠</div>
         <div class="pillar-tag">Pilier 1</div>
@@ -62,6 +59,7 @@
         <div class="pillar-items">
           <div class="pillar-item">Gëstu Control — Audit &amp; Conformité multi-référentiels</div>
           <div class="pillar-item">Gëstu Risk — Cartographie des risques ISO 31000</div>
+          <div class="pillar-item" style="opacity:.55">Gëstu Diligence — Due diligence tech <span class="coming-badge">bientôt</span></div>
           <div class="pillar-item">Espace client dédié par mission</div>
           <div class="pillar-item">Plans d'action et rapports automatisés</div>
           <div class="pillar-item">Multi-partenaires, white-label complet</div>
@@ -71,20 +69,6 @@
           <a href="/gestu-risk" class="pillar-link">Gëstu Risk →</a>
         </div>
         <div class="pillar-mention">Démo guidée en 30 min · Mise en place en 48h</div>
-      </div>
-      <div class="pillar-card coming">
-        <div class="coming-badge">Bientôt disponible</div>
-        <div class="pillar-icon">🔍</div>
-        <div class="pillar-tag">Produit 3</div>
-        <div class="pillar-title">Gëstu Diligence</div>
-        <div class="pillar-desc">Due diligence technologique pour les fonds d'investissement. Évaluez la maturité tech, la posture sécurité et la conformité des startups avant d'investir.</div>
-        <div class="pillar-items">
-          <div class="pillar-item" style="opacity:.45">Scoring TDD structuré</div>
-          <div class="pillar-item" style="opacity:.45">Rapport d'investissabilité</div>
-          <div class="pillar-item" style="opacity:.45">Espace collaboratif fonds / startup</div>
-          <div class="pillar-item" style="opacity:.45">Benchmarking sectoriel</div>
-        </div>
-        <div class="pillar-mention" style="margin-top:auto">Intéressé ? Contactez-nous pour accès anticipé.</div>
       </div>
     </div>
   </div>
