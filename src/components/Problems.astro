@@ -1,0 +1,76 @@
+---
+---
+
+<style>
+/* ── PROBLÈMES / SOLUTIONS ── */
+.prob-tabs { display:flex;gap:8px;margin-bottom:40px;flex-wrap:wrap; }
+.prob-tab { padding:10px 22px;border-radius:10px;font-size:13px;font-weight:600;border:1.5px solid #ddd;background:#fff;color:var(--muted);cursor:pointer;transition:all .2s; }
+.prob-tab.active { background:var(--green);color:#fff;border-color:var(--green); }
+.prob-tab:hover:not(.active) { border-color:var(--green);color:var(--green); }
+.prob-panel { display:none; }
+.prob-panel.active { display:flex;flex-direction:column;gap:1px;background:rgba(0,0,0,.06);border-radius:16px;overflow:hidden; }
+.prob-row { display:grid;grid-template-columns:1fr 48px 1fr;align-items:center;background:#fff;transition:background .2s; }
+.prob-row:hover { background:#fafafa; }
+.prob-left { padding:28px 32px;font-size:15px;color:#374151;font-style:italic;line-height:1.6;border-right:1px solid rgba(0,0,0,.05); }
+.prob-left::before { content:'❝ ';color:var(--muted);font-style:normal; }
+.prob-left::after  { content:' ❞';color:var(--muted);font-style:normal; }
+.prob-arrow { display:flex;align-items:center;justify-content:center;font-size:18px;color:var(--green); }
+.prob-right { padding:28px 32px; }
+.prob-answer { font-size:14px;color:#374151;line-height:1.65;margin-bottom:12px; }
+.prob-badges { display:flex;gap:8px;flex-wrap:wrap; }
+.badge { font-size:10px;font-weight:700;padding:4px 11px;border-radius:20px;text-transform:uppercase;letter-spacing:.06em; }
+.badge-conseil { background:rgba(24,95,165,.1);color:var(--blue); }
+.badge-control { background:rgba(10,61,36,.1);color:var(--green); }
+.badge-risk    { background:rgba(201,168,76,.15);color:#8a6a1a; }
+@media(max-width:900px){
+  .prob-row { grid-template-columns:1fr; }
+  .prob-arrow { display:none; }
+  .prob-left { border-right:none;border-bottom:1px solid rgba(0,0,0,.05); }
+}
+</style>
+
+<!-- ══ PROBLÈMES / SOLUTIONS ══ -->
+<section style="background:var(--cream)" id="problemes">
+  <div class="si">
+    <div class="tag tag-green"><span>Vous vous reconnaissez ?</span></div>
+    <h2>Des problèmes <em>concrets</em>,<br/>des réponses précises</h2>
+    <p class="sub">Pas de promesses génériques. Pour chaque situation que vous vivez, nous avons une réponse — conseil, outil, ou les deux.</p>
+    <div class="prob-tabs">
+      <div class="prob-tab active" onclick="switchTab('gouvernance',this)">Gouvernance SI</div>
+      <div class="prob-tab" onclick="switchTab('cyber',this)">Cybersécurité</div>
+      <div class="prob-tab" onclick="switchTab('conformite',this)">Conformité</div>
+      <div class="prob-tab" onclick="switchTab('ops',this)">Efficacité opérationnelle</div>
+    </div>
+    <div class="prob-panel active" id="tab-gouvernance">
+      <div class="prob-row"><div class="prob-left">On ne sait pas où on en est réellement sur la maturité de notre SI.</div><div class="prob-arrow">→</div><div class="prob-right"><div class="prob-answer">Diagnostic de maturité SI structuré par domaine, scoring visuel et feuille de route priorisée.</div><div class="prob-badges"><span class="badge badge-conseil">Conseil</span></div></div></div>
+      <div class="prob-row"><div class="prob-left">Notre comité de direction veut des indicateurs de gouvernance. On n'a rien à leur montrer.</div><div class="prob-arrow">→</div><div class="prob-right"><div class="prob-answer">Tableau de bord exécutif avec KPIs clés, alimenté directement par la plateforme en temps réel.</div><div class="prob-badges"><span class="badge badge-conseil">Conseil</span><span class="badge badge-control">Gëstu Control</span></div></div></div>
+      <div class="prob-row"><div class="prob-left">On a un schéma directeur SI vieux de 5 ans. Personne ne sait s'il est encore valide.</div><div class="prob-arrow">→</div><div class="prob-right"><div class="prob-answer">Révision et actualisation du schéma directeur, alignement stratégie/SI, priorisation des chantiers.</div><div class="prob-badges"><span class="badge badge-conseil">Conseil</span></div></div></div>
+    </div>
+    <div class="prob-panel" id="tab-cyber">
+      <div class="prob-row"><div class="prob-left">On a subi une cyberattaque. On ne veut plus jamais vivre ça mais on ne sait pas comment se protéger vraiment.</div><div class="prob-arrow">→</div><div class="prob-right"><div class="prob-answer">Audit de sécurité post-incident, cartographie des risques et plan de remédiation priorisé par criticité.</div><div class="prob-badges"><span class="badge badge-conseil">Conseil</span><span class="badge badge-risk">Gëstu Risk</span></div></div></div>
+      <div class="prob-row"><div class="prob-left">Nos équipes cliquent encore sur des liens de phishing. La sensibilisation ne fonctionne pas.</div><div class="prob-arrow">→</div><div class="prob-right"><div class="prob-answer">Programme de sensibilisation sur mesure, adapté aux profils de vos collaborateurs avec mises en situation.</div><div class="prob-badges"><span class="badge badge-conseil">Conseil</span></div></div></div>
+      <div class="prob-row"><div class="prob-left">On n'a aucun plan si nos systèmes tombent en panne. Pas de PCA, pas de PRA, rien.</div><div class="prob-arrow">→</div><div class="prob-right"><div class="prob-answer">Élaboration et test de votre Plan de Continuité et de Reprise d'Activité avec scénarios validés.</div><div class="prob-badges"><span class="badge badge-conseil">Conseil</span></div></div></div>
+    </div>
+    <div class="prob-panel" id="tab-conformite">
+      <div class="prob-row"><div class="prob-left">On nous demande la certification ISO 27001. On ne sait pas par où commencer et on n'a pas de RSSI.</div><div class="prob-arrow">→</div><div class="prob-right"><div class="prob-answer">Accompagnement complet : gap analysis, mise en conformité, gestion documentaire et préparation à la certification.</div><div class="prob-badges"><span class="badge badge-conseil">Conseil</span><span class="badge badge-control">Gëstu Control</span></div></div></div>
+      <div class="prob-row"><div class="prob-left">RGPD, NIS2, DORA… on ne sait plus quelle réglementation s'applique à nous et ce qu'elle exige.</div><div class="prob-arrow">→</div><div class="prob-right"><div class="prob-answer">Cartographie réglementaire personnalisée et plan de mise en conformité séquencé par priorité et délai.</div><div class="prob-badges"><span class="badge badge-conseil">Conseil</span></div></div></div>
+      <div class="prob-row"><div class="prob-left">Nos clients demandent des preuves de conformité. Tout est dans des fichiers Word éparpillés.</div><div class="prob-arrow">→</div><div class="prob-right"><div class="prob-answer">Centralisation des preuves, suivi des plans d'action et rapports générés automatiquement depuis la plateforme.</div><div class="prob-badges"><span class="badge badge-control">Gëstu Control</span></div></div></div>
+    </div>
+    <div class="prob-panel" id="tab-ops">
+      <div class="prob-row"><div class="prob-left">On gère 15 clients d'audit avec Excel et des emails. C'est ingérable et on perd de l'information.</div><div class="prob-arrow">→</div><div class="prob-right"><div class="prob-answer">Plateforme multi-clients en marque blanche : chaque client dans son espace, tout piloté depuis un seul dashboard.</div><div class="prob-badges"><span class="badge badge-control">Gëstu Control</span></div></div></div>
+      <div class="prob-row"><div class="prob-left">Chaque auditeur a sa propre méthode. On ne peut pas industrialiser ni garantir la qualité.</div><div class="prob-arrow">→</div><div class="prob-right"><div class="prob-answer">Référentiels standardisés, grilles d'évaluation partagées et bibliothèques de preuves à l'échelle du cabinet.</div><div class="prob-badges"><span class="badge badge-control">Gëstu Control</span></div></div></div>
+      <div class="prob-row"><div class="prob-left">On identifie des risques dans nos audits mais aucun outil pour les suivre et vérifier leur traitement.</div><div class="prob-arrow">→</div><div class="prob-right"><div class="prob-answer">Cartographie des risques intégrée à l'audit, revues périodiques et indicateurs de traitement en temps réel.</div><div class="prob-badges"><span class="badge badge-control">Gëstu Control</span><span class="badge badge-risk">Gëstu Risk</span></div></div></div>
+    </div>
+  </div>
+</section>
+
+<script>
+// ── Onglets problèmes
+function switchTab(name, el) {
+  document.querySelectorAll('.prob-tab').forEach(t => t.classList.remove('active'));
+  el.classList.add('active');
+  document.querySelectorAll('.prob-panel').forEach(p => p.classList.remove('active'));
+  const panel = document.getElementById('tab-'+name);
+  if(panel) panel.classList.add('active');
+}
+</script>

@@ -1,0 +1,412 @@
+---
+---
+<style>
+/* ── DÉMO ── */
+.demo-sec { background:linear-gradient(160deg,var(--dark) 0%,#0a3020 100%);position:relative;overflow:hidden;padding:100px 60px; }
+.demo-sec::before { content:'';position:absolute;inset:0;background-image:radial-gradient(circle,rgba(255,255,255,.06) 1px,transparent 1px);background-size:36px 36px; }
+.demo-inner { position:relative;z-index:1; }
+.demo-header { text-align:center;margin-bottom:40px; }
+.demo-header h2 { color:#fff; }
+.demo-header .sub { color:rgba(255,255,255,.55);margin:0 auto 0; }
+
+/* App wrapper */
+.demo-app { border-radius:16px;overflow:hidden;border:1px solid rgba(255,255,255,.1);box-shadow:0 40px 100px rgba(0,0,0,.5);width:100% }
+.demo-app-bar { background:rgba(0,0,0,.4);padding:10px 16px;display:flex;align-items:center;gap:8px;border-bottom:1px solid rgba(255,255,255,.06) }
+.demo-app-body { display:grid;grid-template-columns:160px 1fr;min-height:580px }
+.d-sidebar { background:rgba(0,0,0,.28);border-right:1px solid rgba(255,255,255,.06);padding:14px 0 }
+.d-nav-section { font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.14em;color:rgba(255,255,255,.2);padding:0 14px;margin:14px 0 6px }
+.d-nav { display:flex;align-items:center;gap:8px;padding:8px 14px;font-size:12px;font-weight:500;color:rgba(255,255,255,.4);cursor:pointer;transition:all .18s;border-left:2px solid transparent }
+.d-nav:hover { color:rgba(255,255,255,.75);background:rgba(255,255,255,.03) }
+.d-nav.active { color:#fff;background:rgba(255,255,255,.07);border-left-color:var(--gold) }
+.d-nav-badge { margin-left:auto;font-size:9px;font-weight:700;background:rgba(239,68,68,.25);color:#ef4444;border-radius:10px;padding:1px 6px }
+.d-main { display:flex;flex-direction:column;min-width:0 }
+.d-topbar { padding:10px 18px;border-bottom:1px solid rgba(255,255,255,.06);display:flex;align-items:center;justify-content:space-between;flex-shrink:0 }
+.d-breadcrumb { font-size:11px;color:rgba(255,255,255,.3);display:flex;align-items:center;gap:5px }
+.d-breadcrumb strong { color:rgba(255,255,255,.75);font-weight:600 }
+.d-topright { display:flex;align-items:center;gap:10px }
+.d-live { display:flex;align-items:center;gap:5px;background:rgba(34,197,94,.1);border:1px solid rgba(34,197,94,.2);border-radius:20px;padding:3px 10px;font-size:10px;font-weight:700;color:#6fcf97 }
+.d-live-dot { width:6px;height:6px;border-radius:50%;background:#6fcf97;animation:pulse-dot 1.5s infinite }
+.d-avatar { width:26px;height:26px;border-radius:50%;background:var(--gold);display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:800;color:var(--green) }
+.d-notif { position:relative;font-size:15px;cursor:pointer;color:rgba(255,255,255,.4) }
+.d-notif-badge { position:absolute;top:-2px;right:-2px;width:7px;height:7px;border-radius:50%;background:#ef4444;border:1.5px solid #071F12 }
+.d-mission-bar { padding:8px 18px;background:rgba(255,255,255,.02);border-bottom:1px solid rgba(255,255,255,.04);display:flex;align-items:center;gap:10px;flex-shrink:0 }
+.d-mission-label { font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:rgba(255,255,255,.22);flex-shrink:0 }
+.d-mission-sel { background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:6px;padding:4px 10px;font-size:12px;color:#fff;font-family:'DM Sans',sans-serif;cursor:pointer;flex:1;max-width:340px }
+.d-mission-sel option { background:#071F12 }
+.d-content { flex:1;padding:14px 16px;display:grid;grid-template-columns:1fr 1fr;gap:12px;align-items:start;overflow:hidden }
+.d-ctrl-list { display:flex;flex-direction:column;gap:6px }
+.d-ctrl-list-title { font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:rgba(255,255,255,.25);margin-bottom:4px }
+.d-ctrl { padding:9px 11px;border-radius:8px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);cursor:pointer;transition:all .18s;display:flex;align-items:center;gap:9px }
+.d-ctrl:hover,.d-ctrl.active { background:rgba(255,255,255,.07);border-color:rgba(255,255,255,.14) }
+.d-ctrl-dot { width:7px;height:7px;border-radius:50%;flex-shrink:0;margin-top:1px }
+.d-ctrl-info { flex:1;min-width:0 }
+.d-ctrl-name { font-size:11px;font-weight:600;color:rgba(255,255,255,.8);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-bottom:3px }
+.d-ctrl-meta { display:flex;align-items:center;gap:6px }
+.d-av { width:16px;height:16px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:7px;font-weight:800;color:#fff;flex-shrink:0 }
+.d-ctrl-date { font-size:9px;color:rgba(255,255,255,.28) }
+.d-ctrl-trend { font-size:9px;font-weight:700;margin-left:auto;flex-shrink:0 }
+.d-right { display:flex;flex-direction:column;gap:10px }
+.d-detail { background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07);border-radius:10px;padding:13px }
+.d-detail-title { font-size:11px;font-weight:700;color:rgba(255,255,255,.7);margin-bottom:10px;padding-bottom:8px;border-bottom:1px solid rgba(255,255,255,.06) }
+.d-conf-row { display:flex;gap:6px;margin-bottom:10px }
+.d-conf-btn { flex:1;padding:7px 4px;border-radius:6px;border:1px solid rgba(255,255,255,.08);background:rgba(255,255,255,.04);text-align:center;font-size:10px;font-weight:700;color:rgba(255,255,255,.4);cursor:pointer;transition:all .18s }
+.d-ai-box { background:rgba(201,168,76,.08);border:1px solid rgba(201,168,76,.18);border-radius:8px;padding:10px;margin-bottom:8px }
+.d-ai-label { font-size:9px;font-weight:700;color:var(--gold);margin-bottom:5px;text-transform:uppercase;letter-spacing:.1em }
+.d-ai-text { font-size:10px;color:rgba(255,255,255,.65);line-height:1.55 }
+.d-score-row { font-size:10px;color:rgba(255,255,255,.35) }
+.d-feed-box { background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.06);border-radius:10px;padding:11px }
+.d-feed-title { font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:rgba(255,255,255,.22);margin-bottom:8px }
+.d-feed-item { display:flex;align-items:flex-start;gap:7px;margin-bottom:7px;font-size:10px;color:rgba(255,255,255,.45);line-height:1.4 }
+.d-feed-item:last-child { margin-bottom:0 }
+.d-feed-av { width:18px;height:18px;border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:7px;font-weight:800;color:#fff }
+.d-report-area { background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.06);border-radius:10px;padding:11px }
+.d-report-btn { width:100%;padding:9px;border-radius:7px;background:linear-gradient(135deg,var(--gold),var(--gold2));color:var(--green);font-size:11px;font-weight:800;border:none;cursor:pointer;font-family:'DM Sans',sans-serif;transition:opacity .2s }
+.d-report-btn:hover { opacity:.88 }
+.d-report-prog { height:3px;background:rgba(255,255,255,.08);border-radius:2px;overflow:hidden;margin-top:7px;display:none }
+.d-report-bar { height:100%;background:var(--gold);border-radius:2px;width:0 }
+.d-report-done { font-size:10px;color:#6fcf97;text-align:center;margin-top:6px;display:none }
+/* Matrix */
+.matrix-grid { display:grid;grid-template-columns:repeat(5,1fr);gap:5px;margin-bottom:16px }
+.m-cell { aspect-ratio:1;border-radius:6px;cursor:pointer;transition:transform .15s,box-shadow .15s;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:rgba(255,255,255,.9) }
+.m-cell:hover { transform:scale(1.12);box-shadow:0 4px 12px rgba(0,0,0,.3) }
+.m-cell.cg { background:rgba(34,197,94,.35) }
+.m-cell.cy { background:rgba(234,179,8,.4) }
+.m-cell.co { background:rgba(249,115,22,.45) }
+.m-cell.cr { background:rgba(239,68,68,.5) }
+.m-cell.cd { background:rgba(139,0,0,.6) }
+.risk-tooltip { font-size:12px;color:rgba(255,255,255,.6);line-height:1.6;padding:10px;background:rgba(255,255,255,.04);border-radius:8px;border:1px solid rgba(255,255,255,.06) }
+
+@media(max-width:900px){
+  .demo-app-body { grid-template-columns:1fr; }
+  .d-sidebar { display:none; }
+  .d-content { grid-template-columns:1fr; }
+}
+</style>
+
+<section class="demo-sec" id="demo-sec">
+  <div class="si demo-inner">
+    <div class="demo-header">
+      <div class="tag tag-gold" style="display:inline-flex;margin-bottom:14px"><span>Essayez maintenant</span></div>
+      <h2>Explorez la plateforme<br/>sans vous inscrire</h2>
+      <p class="sub">Naviguez comme si c'était votre espace — cliquez, explorez, ressentez.</p>
+    </div>
+
+    <div class="demo-app">
+      <!-- Barre fenêtre OS -->
+      <div class="demo-app-bar">
+        <div class="dot" style="width:10px;height:10px;border-radius:50%;background:#ff5f57"></div>
+        <div class="dot" style="width:10px;height:10px;border-radius:50%;background:#ffbd2e"></div>
+        <div class="dot" style="width:10px;height:10px;border-radius:50%;background:#28ca41"></div>
+        <div style="flex:1;text-align:center;font-size:11px;color:rgba(255,255,255,.25);font-weight:500">app.gestugroup.com</div>
+      </div>
+
+      <div class="demo-app-body">
+        <!-- Sidebar -->
+        <div class="d-sidebar">
+          <div style="padding:0 14px 14px;border-bottom:1px solid rgba(255,255,255,.06);margin-bottom:8px">
+            <div style="font-family:'Playfair Display',serif;font-size:15px;font-weight:800;color:#fff">Gëstu <span style="color:var(--gold)">Group</span></div>
+            <div style="font-size:9px;color:rgba(255,255,255,.3);margin-top:2px">Cabinet Dupont &amp; Associés</div>
+          </div>
+          <div class="d-nav-section">Principal</div>
+          <div class="d-nav" onclick="switchDemoTab('audit',this)">📊 Tableau de bord</div>
+          <div class="d-nav active" onclick="switchDemoTab('audit',this)">🛡️ Contrôles</div>
+          <div class="d-nav" onclick="switchDemoTab('risk',this)">⚠️ Risques <span class="d-nav-badge">7</span></div>
+          <div class="d-nav-section">Missions</div>
+          <div class="d-nav">📋 Missions</div>
+          <div class="d-nav">📄 Rapports</div>
+          <div class="d-nav-section">Compte</div>
+          <div class="d-nav">⚙️ Paramètres</div>
+        </div>
+
+        <!-- Zone principale -->
+        <div class="d-main">
+          <div class="d-topbar">
+            <div class="d-breadcrumb">
+              Gëstu Control <span style="opacity:.3">›</span> Missions <span style="opacity:.3">›</span>
+              <strong>Cabinet Dupont</strong> <span style="opacity:.3">›</span> <strong>Audit ISO 27001</strong>
+            </div>
+            <div class="d-topright">
+              <div class="d-live"><div class="d-live-dot"></div>En direct</div>
+              <div class="d-notif">🔔<div class="d-notif-badge"></div></div>
+              <div class="d-avatar">ML</div>
+            </div>
+          </div>
+
+          <div class="d-mission-bar">
+            <div class="d-mission-label">Mission active</div>
+            <select class="d-mission-sel">
+              <option>Cabinet Dupont &amp; Associés — Audit ISO 27001 · Phase 2</option>
+              <option>ESN Nextech — Conformité NIS2 · Phase 1</option>
+              <option>Groupe Meridian — Audit RGPD · Phase 3</option>
+            </select>
+            <div style="margin-left:auto;display:flex;align-items:center;gap:8px">
+              <div style="font-size:10px;color:rgba(255,255,255,.3)">Score global</div>
+              <div style="font-family:'Playfair Display',serif;font-size:16px;font-weight:800;color:var(--gold)">74%</div>
+              <div style="font-size:9px;color:#6fcf97;font-weight:700">▲ +12 pts</div>
+            </div>
+          </div>
+
+          <!-- Audit tab -->
+          <div class="d-content" id="demoAudit">
+            <div>
+              <div class="d-ctrl-list-title">Contrôles ISO 27001 — Domaine A</div>
+              <div class="d-ctrl-list">
+                <div class="d-ctrl active" id="dc0" onclick="dShowControl(0,this)">
+                  <div class="d-ctrl-dot" style="background:#6fcf97"></div>
+                  <div class="d-ctrl-info">
+                    <div class="d-ctrl-name">A.5 — Politiques de sécurité</div>
+                    <div class="d-ctrl-meta">
+                      <div class="d-av" style="background:#7c3aed">ML</div>
+                      <div class="d-ctrl-date">Mis à jour il y a 2h</div>
+                      <div class="d-ctrl-trend" style="color:#6fcf97">▲ +8</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="d-ctrl" id="dc1" onclick="dShowControl(1,this)">
+                  <div class="d-ctrl-dot" style="background:#f97316"></div>
+                  <div class="d-ctrl-info">
+                    <div class="d-ctrl-name">A.9 — Contrôle des accès</div>
+                    <div class="d-ctrl-meta">
+                      <div class="d-av" style="background:#0891b2">JD</div>
+                      <div class="d-ctrl-date">Mis à jour hier</div>
+                      <div class="d-ctrl-trend" style="color:#f97316">▲ +3</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="d-ctrl" id="dc2" onclick="dShowControl(2,this)">
+                  <div class="d-ctrl-dot" id="dc2dot" style="background:#ef4444"></div>
+                  <div class="d-ctrl-info">
+                    <div class="d-ctrl-name">A.12 — Sécurité exploitation</div>
+                    <div class="d-ctrl-meta">
+                      <div class="d-av" style="background:#d97706">KN</div>
+                      <div class="d-ctrl-date">Mis à jour il y a 5j</div>
+                      <div class="d-ctrl-trend" style="color:#ef4444">▼ −2</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="d-ctrl" id="dc3" onclick="dShowControl(3,this)">
+                  <div class="d-ctrl-dot" style="background:#6fcf97"></div>
+                  <div class="d-ctrl-info">
+                    <div class="d-ctrl-name">A.6 — Organisation SI</div>
+                    <div class="d-ctrl-meta">
+                      <div class="d-av" style="background:#059669">SA</div>
+                      <div class="d-ctrl-date">Mis à jour il y a 3j</div>
+                      <div class="d-ctrl-trend" style="color:#6fcf97">▲ +12</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="d-ctrl" id="dc4" onclick="dShowControl(4,this)">
+                  <div class="d-ctrl-dot" style="background:#eab308"></div>
+                  <div class="d-ctrl-info">
+                    <div class="d-ctrl-name">A.18 — Conformité</div>
+                    <div class="d-ctrl-meta">
+                      <div class="d-av" style="background:#7c3aed">ML</div>
+                      <div class="d-ctrl-date">Mis à jour il y a 1j</div>
+                      <div class="d-ctrl-trend" style="color:#eab308">— 0</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="d-right">
+              <div class="d-detail">
+                <div class="d-detail-title" id="dDetailTitle">A.5 — Politiques de sécurité de l'information</div>
+                <div class="d-conf-row" id="dConfRow">
+                  <div class="d-conf-btn" style="background:rgba(34,197,94,.2);border-color:rgba(34,197,94,.35);color:#6fcf97" onclick="dSelectConf(this,'conforme')">✓ Conforme</div>
+                  <div class="d-conf-btn" onclick="dSelectConf(this,'partiel')">Partiel</div>
+                  <div class="d-conf-btn" onclick="dSelectConf(this,'non')">✗ Non conforme</div>
+                </div>
+                <div class="d-ai-box">
+                  <div class="d-ai-label">🤖 Suggestion IA</div>
+                  <div class="d-ai-text" id="dAiText">Politique SMSI formalisée et approuvée par la direction, revue annuelle documentée, diffusion aux parties prenantes. 2 pièces jointes vérifiées.</div>
+                </div>
+                <div class="d-score-row" id="dScore">Score domaine : <span style="color:#6fcf97;font-weight:700">Conforme</span> · 0 écart · <span style="color:rgba(255,255,255,.3)">Responsable : Marie L.</span></div>
+              </div>
+              <div class="d-feed-box">
+                <div class="d-feed-title">Activité récente</div>
+                <div class="d-feed-item"><div class="d-feed-av" style="background:#7c3aed">ML</div><div><strong style="color:rgba(255,255,255,.7)">Marie L.</strong> a mis à jour A.9 · <span style="color:rgba(255,255,255,.25)">il y a 3 min</span></div></div>
+                <div class="d-feed-item"><div class="d-feed-av" style="background:#059669">⚡</div><div>Rapport <strong style="color:rgba(255,255,255,.7)">ISO 27001 Q1</strong> généré automatiquement · <span style="color:rgba(255,255,255,.25)">hier 14h22</span></div></div>
+                <div class="d-feed-item"><div class="d-feed-av" style="background:#0891b2">JD</div><div><strong style="color:rgba(255,255,255,.7)">Jean D.</strong> a joint 2 preuves à A.12 · <span style="color:rgba(255,255,255,.25)">hier 11h08</span></div></div>
+                <div class="d-feed-item" id="liveActivity"><div class="d-feed-av" style="background:#d97706">🔄</div><div><strong style="color:#6fcf97">A.12</strong> mis à jour automatiquement · <span style="color:rgba(255,255,255,.25)">maintenant</span></div></div>
+              </div>
+              <div class="d-report-area">
+                <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:rgba(255,255,255,.25);margin-bottom:8px">Export &amp; Rapport</div>
+                <button class="d-report-btn" id="reportBtn">📄 Générer le rapport PDF — Audit ISO 27001</button>
+                <div class="d-report-prog" id="reportProg"><div class="d-report-bar" id="reportBar"></div></div>
+                <div class="d-report-done" id="reportDone">✓ Rapport prêt — 28 pages · Télécharger</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Risk tab -->
+          <div class="d-content" id="demoRisk" style="display:none;grid-template-columns:1fr 1fr">
+            <div>
+              <div class="d-ctrl-list-title">Matrice des risques ISO 31000 — Cliquez une cellule</div>
+              <div style="font-size:10px;font-weight:700;color:rgba(255,255,255,.3);margin-bottom:6px;margin-top:10px">Impact →</div>
+              <div style="display:flex;gap:6px;align-items:start">
+                <div style="font-size:9px;color:rgba(255,255,255,.25);writing-mode:vertical-lr;transform:rotate(180deg);letter-spacing:.06em;flex-shrink:0">Probabilité ↑</div>
+                <div style="flex:1"><div class="matrix-grid" id="riskMatrix"></div></div>
+              </div>
+              <div style="display:flex;gap:8px;margin-top:10px;flex-wrap:wrap">
+                <div style="display:flex;align-items:center;gap:4px;font-size:9px;color:rgba(255,255,255,.4)"><div style="width:8px;height:8px;border-radius:2px;background:rgba(34,197,94,.4)"></div>Faible</div>
+                <div style="display:flex;align-items:center;gap:4px;font-size:9px;color:rgba(255,255,255,.4)"><div style="width:8px;height:8px;border-radius:2px;background:rgba(234,179,8,.4)"></div>Modéré</div>
+                <div style="display:flex;align-items:center;gap:4px;font-size:9px;color:rgba(255,255,255,.4)"><div style="width:8px;height:8px;border-radius:2px;background:rgba(249,115,22,.45)"></div>Élevé</div>
+                <div style="display:flex;align-items:center;gap:4px;font-size:9px;color:rgba(255,255,255,.4)"><div style="width:8px;height:8px;border-radius:2px;background:rgba(239,68,68,.5)"></div>Critique</div>
+              </div>
+            </div>
+            <div>
+              <div class="d-detail" style="margin-bottom:10px">
+                <div class="d-detail-title">Analyse du risque sélectionné</div>
+                <div class="risk-tooltip" id="riskTooltip">
+                  👆 Cliquez sur une cellule pour voir l'analyse et la recommandation de traitement.
+                </div>
+              </div>
+              <div class="d-feed-box">
+                <div class="d-feed-title">Risques critiques — Action requise</div>
+                <div class="d-feed-item"><div class="d-feed-av" style="background:#ef4444">!</div><div><strong style="color:#ef4444">Accès non autorisés</strong> — Score 20 · <span style="color:rgba(255,255,255,.25)">Propriétaire : Jean D.</span></div></div>
+                <div class="d-feed-item"><div class="d-feed-av" style="background:#f97316">!</div><div><strong style="color:#f97316">Perte de données</strong> — Score 15 · <span style="color:rgba(255,255,255,.25)">Plan en cours</span></div></div>
+                <div class="d-feed-item"><div class="d-feed-av" style="background:#eab308">~</div><div><strong style="color:#eab308">Indispo. infrastructure</strong> — Score 9 · <span style="color:rgba(255,255,255,.25)">Surveillé</span></div></div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <div style="text-align:center;margin-top:24px">
+      <a href="#contact" class="btn-gold" style="display:inline-flex">Accéder à la démo complète →</a>
+    </div>
+  </div>
+</section>
+
+<script>
+// Données contrôles
+const dControls = [
+  { title:"A.5 — Politiques de sécurité de l'information", ai:"Politique SMSI formalisée et approuvée par la direction, revue annuelle documentée, diffusion aux parties prenantes. 2 pièces jointes vérifiées.", score:"Conforme", ecarts:"0", color:"#6fcf97", resp:"Marie L." },
+  { title:"A.9 — Contrôle des accès", ai:"RBAC documenté, revue semestrielle des droits, MFA obligatoire pour les administrateurs, procédure de départ formalisée. 3 écarts détectés.", score:"Partiel", ecarts:"3", color:"#f97316", resp:"Jean D." },
+  { title:"A.12 — Sécurité exploitation", ai:"Plan de sauvegarde testé trimestriellement, journalisation centralisée (SIEM), patch management avec SLA défini. 5 actions correctives requises.", score:"Non conforme", ecarts:"5", color:"#ef4444", resp:"Kofi N." },
+  { title:"A.6 — Organisation de la sécurité", ai:"Structure de gouvernance SI définie, rôles et responsabilités documentés, contacts avec autorités établis. Revue à planifier.", score:"Conforme", ecarts:"0", color:"#6fcf97", resp:"Sira A." },
+  { title:"A.18 — Conformité réglementaire", ai:"Obligations légales identifiées, revue juridique en cours pour NIS2. Propriété intellectuelle couverte. Revue de conformité à documenter.", score:"Partiel", ecarts:"2", color:"#eab308", resp:"Marie L." },
+];
+
+function dShowControl(idx, el) {
+  document.querySelectorAll('.d-ctrl').forEach(c => c.classList.remove('active'));
+  el.classList.add('active');
+  const c = dControls[idx];
+  document.getElementById('dDetailTitle').textContent = c.title;
+  document.getElementById('dAiText').textContent = c.ai;
+  document.getElementById('dScore').innerHTML = `Score domaine : <span style="color:${c.color};font-weight:700">${c.score}</span> · ${c.ecarts} écart${Number(c.ecarts)>0?'s':''} · <span style="color:rgba(255,255,255,.3)">Responsable : ${c.resp}</span>`;
+  document.querySelectorAll('#dConfRow .d-conf-btn').forEach(b => {
+    b.style.background='rgba(255,255,255,.04)'; b.style.borderColor='rgba(255,255,255,.08)'; b.style.color='rgba(255,255,255,.4)';
+  });
+  const first = document.querySelector('#dConfRow .d-conf-btn');
+  const confColors = { '#6fcf97':'rgba(34,197,94,.2)', '#f97316':'rgba(249,115,22,.18)', '#eab308':'rgba(234,179,8,.18)', '#ef4444':'rgba(239,68,68,.18)' };
+  if (first) { first.style.background=confColors[c.color]||'rgba(255,255,255,.06)'; first.style.borderColor=c.color+'55'; first.style.color=c.color; }
+}
+
+function dSelectConf(el, type) {
+  document.querySelectorAll('#dConfRow .d-conf-btn').forEach(b => {
+    b.style.background='rgba(255,255,255,.04)'; b.style.borderColor='rgba(255,255,255,.08)'; b.style.color='rgba(255,255,255,.4)';
+  });
+  const bg={conforme:'rgba(34,197,94,.2)',partiel:'rgba(249,115,22,.18)',non:'rgba(239,68,68,.18)'};
+  const bd={conforme:'rgba(34,197,94,.4)',partiel:'rgba(249,115,22,.3)',non:'rgba(239,68,68,.3)'};
+  const tc={conforme:'#6fcf97',partiel:'#f97316',non:'#ef4444'};
+  el.style.background=bg[type]; el.style.borderColor=bd[type]; el.style.color=tc[type];
+}
+
+// Navigation démo
+function switchDemoTab(tab, el) {
+  document.querySelectorAll('.d-nav').forEach(n => n.classList.remove('active'));
+  el.classList.add('active');
+  if (tab === 'risk') {
+    document.getElementById('demoAudit').style.display = 'none';
+    document.getElementById('demoRisk').style.display = 'grid';
+    buildMatrix();
+  } else {
+    document.getElementById('demoAudit').style.display = 'grid';
+    document.getElementById('demoRisk').style.display = 'none';
+  }
+}
+
+// Matrice risques
+function buildMatrix() {
+  const matrix = document.getElementById('riskMatrix');
+  if (!matrix || matrix.children.length > 0) return;
+  const tooltip = document.getElementById('riskTooltip');
+  const data = [
+    ['co',10,'Élevé','Probabilité très haute, impact modéré. Traitement prioritaire sous 30 jours.'],
+    ['cr',15,'Critique','Zone rouge. Action immédiate et validation CODIR requise.'],
+    ['cr',20,'Critique','Risque extrême. Suspension de l\'activité concernée envisageable.'],
+    ['cd',20,'Critique','Risque catastrophique. Cellule de crise à activer sans délai.'],
+    ['cd',25,'Critique','Risque maximal. Menace existentielle pour l\'organisation.'],
+    ['cy',5,'Modéré','Traitement recommandé. Désigner un propriétaire de risque.'],
+    ['co',10,'Élevé','Risque significatif. Plan d\'action à définir sous 30 jours.'],
+    ['cr',15,'Critique','Escalade management requise. Traitement urgent.'],
+    ['cr',16,'Critique','Risque critique. Validation direction et plan d\'urgence.'],
+    ['cd',20,'Critique','Risque catastrophique. Action immédiate.'],
+    ['cg',4,'Faible','Risque acceptable. Surveillance trimestrielle suffisante.'],
+    ['cy',6,'Modéré','Risque modéré. Plan de surveillance à mettre en place.'],
+    ['co',10,'Élevé','Risque élevé. Propriétaire et échéance à définir.'],
+    ['cr',15,'Critique','Zone critique. Escalade et plan d\'urgence.'],
+    ['cr',15,'Critique','Risque critique. Traitement prioritaire.'],
+    ['cg',2,'Faible','Risque très faible. Acceptation possible.'],
+    ['cg',4,'Faible','Risque faible. Revue annuelle.'],
+    ['cy',6,'Modéré','Risque modéré. Revue semestrielle.'],
+    ['co',10,'Élevé','Risque élevé. Traitement à planifier.'],
+    ['cr',15,'Critique','Risque critique. Action rapide.'],
+    ['cg',1,'Faible','Risque minimal. Aucune action requise.'],
+    ['cg',2,'Faible','Risque très faible. Surveillance annuelle.'],
+    ['cg',3,'Faible','Risque faible. Acceptable.'],
+    ['cy',5,'Modéré','Risque modéré bas. Plan de surveillance.'],
+    ['co',10,'Élevé','Impact élevé malgré faible probabilité. À surveiller.'],
+  ];
+  data.forEach(d => {
+    const cell = document.createElement('div');
+    cell.className = 'm-cell ' + d[0];
+    cell.onclick = () => {
+      document.querySelectorAll('.m-cell').forEach(c => c.classList.remove('selected'));
+      cell.classList.add('selected');
+      const col = d[0]==='cg'?'#22c55e':d[0]==='cy'?'#eab308':d[0]==='co'?'#f97316':'#ef4444';
+      if (tooltip) tooltip.innerHTML = `<strong style="color:${col}">${d[2]==='Critique'?'🔴':'⚠️'} Score ${d[1]} — ${d[2]}</strong><br/>${d[3]}`;
+    };
+    matrix.appendChild(cell);
+  });
+}
+
+// Rapport PDF simulé
+document.getElementById('reportBtn')?.addEventListener('click', function() {
+  const btn = this;
+  btn.disabled = true; btn.textContent = 'Génération en cours…';
+  const prog = document.getElementById('reportProg');
+  const bar  = document.getElementById('reportBar');
+  const done = document.getElementById('reportDone');
+  if (prog) prog.style.display = 'block';
+  setTimeout(() => { if(bar){bar.style.transition='width 2s ease'; bar.style.width='100%';} }, 50);
+  setTimeout(() => {
+    if(prog) prog.style.display='none';
+    if(done) done.style.display='block';
+    btn.textContent='📄 Générer le rapport PDF — Audit ISO 27001';
+    btn.disabled=false;
+    if(bar){bar.style.width='0';bar.style.transition='none';}
+    setTimeout(()=>{ if(done) done.style.display='none'; }, 4000);
+  }, 2200);
+});
+
+// Live updates toutes les 8s
+const liveUpdates = [
+  { idx:2, dot:'#6fcf97', html:'<strong style="color:#6fcf97">A.12</strong> passé à <strong style="color:#6fcf97">Conforme</strong> · <span style="color:rgba(255,255,255,.25)">maintenant</span>' },
+  { idx:1, dot:'#6fcf97', html:'<strong style="color:#6fcf97">A.9</strong> mis à jour par Jean D. · <span style="color:rgba(255,255,255,.25)">maintenant</span>' },
+  { idx:4, dot:'#6fcf97', html:'<strong style="color:#6fcf97">A.18</strong> revue planifiée par Marie L. · <span style="color:rgba(255,255,255,.25)">maintenant</span>' },
+];
+let liveIdx = 0;
+setInterval(() => {
+  const u = liveUpdates[liveIdx % liveUpdates.length];
+  const dot = document.querySelector('#dc'+u.idx+' .d-ctrl-dot');
+  if (dot) { dot.style.background=u.dot; dot.style.boxShadow='0 0 6px '+u.dot; setTimeout(()=>dot.style.boxShadow='',2000); }
+  const la = document.getElementById('liveActivity');
+  if (la) la.querySelector('div:last-child').innerHTML = u.html;
+  liveIdx++;
+}, 8000);
+</script>

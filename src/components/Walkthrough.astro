@@ -1,0 +1,161 @@
+---
+---
+
+<style>
+/* ── WALKTHROUGH ── */
+.walkthrough { background:var(--cream); }
+.wt-steps { display:flex;gap:0;position:relative;margin-bottom:48px; }
+.wt-steps::before { content:'';position:absolute;top:20px;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--green),var(--gold));z-index:0; }
+.wt-step { flex:1;text-align:center;position:relative;z-index:1;cursor:pointer;padding:0 8px; }
+.wt-num { width:40px;height:40px;border-radius:50%;border:2px solid #ddd;background:#fff;display:flex;align-items:center;justify-content:center;margin:0 auto 12px;font-size:14px;font-weight:800;color:var(--muted);transition:all .3s; }
+.wt-step.active .wt-num { background:var(--green);border-color:var(--green);color:#fff;box-shadow:0 4px 16px rgba(10,61,36,.35); }
+.wt-step.done .wt-num { background:var(--gold);border-color:var(--gold);color:var(--green); }
+.wt-label { font-size:12px;font-weight:600;color:var(--muted);transition:color .3s; }
+.wt-step.active .wt-label { color:var(--green);font-weight:700; }
+.wt-panel { display:none;animation:fadeUp .4s ease both; }
+.wt-panel.active { display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center; }
+.wt-info h3 { font-family:'Playfair Display',serif;font-size:28px;font-weight:800;color:var(--text);margin-bottom:12px; }
+.wt-info p { font-size:15px;color:var(--muted);line-height:1.7;margin-bottom:20px; }
+.wt-bullets { display:flex;flex-direction:column;gap:10px; }
+.wt-bullet { display:flex;align-items:center;gap:10px;font-size:14px;color:var(--text); }
+.wt-bullet-dot { width:8px;height:8px;border-radius:50%;background:var(--green);flex-shrink:0; }
+.wt-screen { background:var(--green);border-radius:16px;padding:24px;box-shadow:0 20px 60px rgba(10,61,36,.25); }
+@media(max-width:900px){
+  .wt-panel.active { grid-template-columns:1fr; }
+}
+</style>
+
+<!-- ══ WALKTHROUGH ══ -->
+<section class="walkthrough">
+  <div class="si">
+    <div class="tag tag-green"><span>Comment ça marche</span></div>
+    <h2>Une mission d'audit<br/>de A à <em>Z</em></h2>
+    <p class="sub">Cliquez sur chaque étape pour voir ce qui se passe concrètement dans la plateforme.</p>
+    <div class="wt-steps">
+      <div class="wt-step active" onclick="setWT(0)"><div class="wt-num">1</div><div class="wt-label">Créer</div></div>
+      <div class="wt-step" onclick="setWT(1)"><div class="wt-num">2</div><div class="wt-label">Évaluer</div></div>
+      <div class="wt-step" onclick="setWT(2)"><div class="wt-num">3</div><div class="wt-label">Client</div></div>
+      <div class="wt-step" onclick="setWT(3)"><div class="wt-num">4</div><div class="wt-label">Valider</div></div>
+      <div class="wt-step" onclick="setWT(4)"><div class="wt-num">5</div><div class="wt-label">Livrer</div></div>
+    </div>
+    <!-- Panel 1 -->
+    <div class="wt-panel active" id="wt-0">
+      <div class="wt-info">
+        <h3>Créer la mission en 2 minutes</h3>
+        <p>Définissez le périmètre, choisissez le référentiel, assignez l'équipe et invitez le client. La structure de l'audit est générée automatiquement.</p>
+        <div class="wt-bullets">
+          <div class="wt-bullet"><div class="wt-bullet-dot"></div>Référentiel au choix (ISO 27001, COBIT, personnalisé)</div>
+          <div class="wt-bullet"><div class="wt-bullet-dot"></div>Équipe multisite avec rôles distincts</div>
+          <div class="wt-bullet"><div class="wt-bullet-dot"></div>Invitation client par email avec accès sécurisé</div>
+        </div>
+      </div>
+      <div class="wt-screen">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px"><div style="font-size:12px;font-weight:700;color:#6fcf97">Nouvelle mission</div><div style="font-size:10px;color:rgba(255,255,255,.4)">Étape 1/3</div></div>
+        <div style="display:flex;flex-direction:column;gap:10px">
+          <div style="background:rgba(255,255,255,.08);border-radius:8px;padding:10px 14px;font-size:12px;color:#fff">📋 Audit ISO 27001 — Nexius SA</div>
+          <div style="background:rgba(255,255,255,.08);border-radius:8px;padding:10px 14px;font-size:12px;color:#fff">🛡️ Référentiel : ISO 27001:2022</div>
+          <div style="background:rgba(255,255,255,.08);border-radius:8px;padding:10px 14px;font-size:12px;color:#fff">👥 Équipe : 3 auditeurs assignés</div>
+          <div style="background:rgba(201,168,76,.2);border:1px solid rgba(201,168,76,.3);border-radius:8px;padding:10px 14px;font-size:12px;color:var(--gold)">✓ 114 contrôles générés automatiquement</div>
+        </div>
+      </div>
+    </div>
+    <!-- Panel 2 -->
+    <div class="wt-panel" id="wt-1">
+      <div class="wt-info">
+        <h3>Évaluer avec l'aide de l'IA</h3>
+        <p>Pour chaque contrôle, l'auditeur saisit les preuves, identifie les écarts et formule des recommandations. L'IA suggère des éléments contextuels.</p>
+        <div class="wt-bullets">
+          <div class="wt-bullet"><div class="wt-bullet-dot"></div>Suggestions de preuves et écarts par l'IA</div>
+          <div class="wt-bullet"><div class="wt-bullet-dot"></div>Score de conformité calculé en temps réel</div>
+          <div class="wt-bullet"><div class="wt-bullet-dot"></div>Upload de pièces justificatives directement</div>
+        </div>
+      </div>
+      <div class="wt-screen">
+        <div style="font-size:11px;font-weight:700;color:rgba(255,255,255,.5);margin-bottom:10px">A.9.1 — Politique de contrôle d'accès</div>
+        <div style="display:flex;gap:6px;margin-bottom:12px">
+          <div style="flex:1;padding:8px;border-radius:6px;background:rgba(34,197,94,.2);border:1px solid rgba(34,197,94,.3);text-align:center;font-size:10px;font-weight:700;color:#6fcf97;cursor:pointer">Conforme</div>
+          <div style="flex:1;padding:8px;border-radius:6px;background:rgba(249,115,22,.3);border:1px solid rgba(249,115,22,.4);text-align:center;font-size:10px;font-weight:700;color:#f97316">Partiel</div>
+          <div style="flex:1;padding:8px;border-radius:6px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);text-align:center;font-size:10px;color:rgba(255,255,255,.3)">Non conforme</div>
+        </div>
+        <div style="background:rgba(201,168,76,.1);border:1px solid rgba(201,168,76,.2);border-radius:8px;padding:10px;font-size:11px;color:rgba(255,255,255,.7);margin-bottom:10px">🤖 IA suggère : Politique RBAC documentée, revue annuelle des droits, MFA administrateurs</div>
+        <div style="background:rgba(255,255,255,.05);border-radius:8px;padding:10px;font-size:11px;color:rgba(255,255,255,.5)">Score domaine : <span style="color:#f97316;font-weight:700">74%</span> · 3 écarts identifiés</div>
+      </div>
+    </div>
+    <!-- Panel 3 -->
+    <div class="wt-panel" id="wt-2">
+      <div class="wt-info">
+        <h3>Le client répond dans son espace</h3>
+        <p>Votre client accède à son portail dédié pour l'auto-évaluation, le dépôt de preuves et le suivi — sans voir les autres missions.</p>
+        <div class="wt-bullets">
+          <div class="wt-bullet"><div class="wt-bullet-dot"></div>Espace client isolé, sous-domaine dédié</div>
+          <div class="wt-bullet"><div class="wt-bullet-dot"></div>Dépôt de documents sécurisé</div>
+          <div class="wt-bullet"><div class="wt-bullet-dot"></div>Suivi en temps réel pour l'auditeur</div>
+        </div>
+      </div>
+      <div class="wt-screen">
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:14px"><div style="width:24px;height:24px;border-radius:6px;background:rgba(255,255,255,.1);display:flex;align-items:center;justify-content:center;font-size:12px">🏢</div><div style="font-size:11px;font-weight:700;color:#fff">Nexius SA — Espace client</div></div>
+        <div style="display:flex;flex-direction:column;gap:8px">
+          <div style="background:rgba(34,197,94,.15);border-radius:8px;padding:10px;display:flex;justify-content:space-between;align-items:center"><span style="font-size:11px;color:#fff">A.5 — Politiques de sécurité</span><span style="font-size:10px;font-weight:700;color:#6fcf97">✓ Soumis</span></div>
+          <div style="background:rgba(249,115,22,.1);border-radius:8px;padding:10px;display:flex;justify-content:space-between;align-items:center"><span style="font-size:11px;color:#fff">A.9 — Contrôle des accès</span><span style="font-size:10px;font-weight:700;color:#f97316">En cours</span></div>
+          <div style="background:rgba(255,255,255,.05);border-radius:8px;padding:10px;display:flex;justify-content:space-between;align-items:center"><span style="font-size:11px;color:rgba(255,255,255,.5)">A.12 — Exploitation</span><span style="font-size:10px;color:rgba(255,255,255,.3)">À faire</span></div>
+        </div>
+      </div>
+    </div>
+    <!-- Panel 4 -->
+    <div class="wt-panel" id="wt-3">
+      <div class="wt-info">
+        <h3>Validation multi-niveaux tracée</h3>
+        <p>Circuit de validation configurable avec commentaires et historique complet. Chaque décision est horodatée et attribuée.</p>
+        <div class="wt-bullets">
+          <div class="wt-bullet"><div class="wt-bullet-dot"></div>Auditeur → Chef de mission → Associé → Client</div>
+          <div class="wt-bullet"><div class="wt-bullet-dot"></div>Retour avec commentaires à chaque niveau</div>
+          <div class="wt-bullet"><div class="wt-bullet-dot"></div>Historique complet et immuable</div>
+        </div>
+      </div>
+      <div class="wt-screen">
+        <div style="font-size:11px;font-weight:700;color:rgba(255,255,255,.5);margin-bottom:12px">Circuit de validation</div>
+        <div style="display:flex;flex-direction:column;gap:8px">
+          <div style="display:flex;align-items:center;gap:10px"><div style="width:28px;height:28px;border-radius:50%;background:#6fcf97;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:var(--green)">✓</div><div><div style="font-size:11px;font-weight:700;color:#fff">Auditeur</div><div style="font-size:10px;color:rgba(255,255,255,.4)">Soumis le 12 mars à 14:32</div></div></div>
+          <div style="display:flex;align-items:center;gap:10px"><div style="width:28px;height:28px;border-radius:50%;background:#6fcf97;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:var(--green)">✓</div><div><div style="font-size:11px;font-weight:700;color:#fff">Chef de mission</div><div style="font-size:10px;color:rgba(255,255,255,.4)">Validé le 13 mars à 09:15</div></div></div>
+          <div style="display:flex;align-items:center;gap:10px"><div style="width:28px;height:28px;border-radius:50%;background:rgba(201,168,76,.3);border:2px solid var(--gold);display:flex;align-items:center;justify-content:center;font-size:11px;color:var(--gold)">→</div><div><div style="font-size:11px;font-weight:700;color:var(--gold)">Associé</div><div style="font-size:10px;color:rgba(255,255,255,.4)">En attente de validation</div></div></div>
+          <div style="display:flex;align-items:center;gap:10px"><div style="width:28px;height:28px;border-radius:50%;background:rgba(255,255,255,.05);border:2px solid rgba(255,255,255,.1);display:flex;align-items:center;justify-content:center;font-size:11px;color:rgba(255,255,255,.3)">○</div><div><div style="font-size:11px;color:rgba(255,255,255,.4)">Client</div></div></div>
+        </div>
+      </div>
+    </div>
+    <!-- Panel 5 -->
+    <div class="wt-panel" id="wt-4">
+      <div class="wt-info">
+        <h3>Rapport généré automatiquement</h3>
+        <p>En un clic : rapport d'audit complet, synthèse exécutive, plan d'action priorisé. Tout est extrait des données saisies pendant la mission.</p>
+        <div class="wt-bullets">
+          <div class="wt-bullet"><div class="wt-bullet-dot"></div>Rapport PDF structuré en marque blanche</div>
+          <div class="wt-bullet"><div class="wt-bullet-dot"></div>Plan d'action avec responsables et délais</div>
+          <div class="wt-bullet"><div class="wt-bullet-dot"></div>Historique consultable pour les revues suivantes</div>
+        </div>
+      </div>
+      <div class="wt-screen">
+        <div style="background:rgba(255,255,255,.06);border-radius:10px;padding:14px;margin-bottom:10px">
+          <div style="font-size:10px;font-weight:700;color:rgba(255,255,255,.4);margin-bottom:8px">RAPPORT GÉNÉRÉ</div>
+          <div style="font-size:13px;font-weight:700;color:#fff;margin-bottom:4px">Audit ISO 27001 — Nexius SA</div>
+          <div style="font-size:11px;color:rgba(255,255,255,.5)">Score global : <span style="color:#f97316;font-weight:700">74%</span> · 23 non-conformités · 18 plans d'action</div>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px">
+          <div style="background:rgba(34,197,94,.15);border-radius:8px;padding:10px;text-align:center"><div style="font-size:16px;font-weight:800;color:#6fcf97">12</div><div style="font-size:9px;color:rgba(255,255,255,.4)">Conformes</div></div>
+          <div style="background:rgba(249,115,22,.12);border-radius:8px;padding:10px;text-align:center"><div style="font-size:16px;font-weight:800;color:#f97316">8</div><div style="font-size:9px;color:rgba(255,255,255,.4)">Partiels</div></div>
+          <div style="background:rgba(239,68,68,.12);border-radius:8px;padding:10px;text-align:center"><div style="font-size:16px;font-weight:800;color:#ef4444">3</div><div style="font-size:9px;color:rgba(255,255,255,.4)">Non conformes</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+// ── Walkthrough
+function setWT(idx) {
+  document.querySelectorAll('.wt-step').forEach((s,i) => {
+    s.classList.toggle('active', i===idx);
+    s.classList.toggle('done', i<idx);
+  });
+  document.querySelectorAll('.wt-panel').forEach((p,i) => p.classList.toggle('active', i===idx));
+}
+</script>

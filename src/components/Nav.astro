@@ -1,0 +1,46 @@
+---
+---
+<style>
+nav {
+  position:fixed;top:0;left:0;right:0;z-index:500;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 60px;height:70px;
+  background:rgba(7,31,18,.92);backdrop-filter:blur(16px);
+  border-bottom:1px solid rgba(255,255,255,.08);
+}
+.nav-logo {
+  font-family:'Playfair Display',serif;font-size:22px;font-weight:800;
+  color:#fff;letter-spacing:-.02em;text-decoration:none;
+}
+.nav-logo em { color:var(--gold);font-style:normal; }
+.nav-links { display:flex;gap:32px; }
+.nav-links a {
+  color:rgba(255,255,255,.65);text-decoration:none;
+  font-size:13px;font-weight:500;transition:color .2s;
+}
+.nav-links a:hover { color:#fff; }
+.nav-cta {
+  background:linear-gradient(135deg,var(--gold),var(--gold2));
+  color:var(--green);font-size:13px;font-weight:800;
+  padding:9px 22px;border-radius:8px;text-decoration:none;transition:opacity .2s;
+}
+.nav-cta:hover { opacity:.9; }
+@media(max-width:768px){
+  nav{padding:0 24px;}
+  .nav-links{display:none;}
+}
+</style>
+
+<nav>
+  <a href="/" class="nav-logo">Gëstu <em>Group</em></a>
+  <div class="nav-links">
+    <a href="#offres">Offres</a>
+    <a href="#usecases">Use cases</a>
+    <a href="#demo-sec">Démo</a>
+    <a href="#contact">Contact</a>
+  </div>
+  <div style="display:flex;align-items:center;gap:12px">
+    <a href="https://app.gestugroup.com" class="nav-links" style="color:rgba(255,255,255,.65);text-decoration:none;font-size:13px;font-weight:500">Se connecter</a>
+    <a href="#contact" class="nav-cta">Parler à un expert</a>
+  </div>
+</nav>

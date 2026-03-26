@@ -1,0 +1,73 @@
+---
+---
+
+<style>
+/* ── PILIERS ── */
+.pillars-grid { display:grid;grid-template-columns:1fr 1fr;gap:28px; }
+.pillar-card { border-radius:22px;padding:44px;position:relative;overflow:hidden;transition:transform .25s,box-shadow .25s; }
+.pillar-card:hover { transform:translateY(-5px);box-shadow:0 24px 60px rgba(0,0,0,.15); }
+.pillar-card.green { background:linear-gradient(145deg,var(--green),var(--green2));border:1px solid rgba(255,255,255,.08); }
+.pillar-card.blue  { background:linear-gradient(145deg,#1a5fa5,#0d4a8a);border:1px solid rgba(255,255,255,.08); }
+.pillar-card::after { content:'';position:absolute;top:-60px;right:-60px;width:200px;height:200px;border-radius:50%;background:rgba(255,255,255,.04); }
+.pillar-icon { width:60px;height:60px;border-radius:16px;background:rgba(255,255,255,.1);display:flex;align-items:center;justify-content:center;margin-bottom:24px;font-size:26px;border:1px solid rgba(255,255,255,.15); }
+.pillar-tag { font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.14em;color:rgba(255,255,255,.4);margin-bottom:8px; }
+.pillar-title { font-family:'Playfair Display',serif;font-size:30px;font-weight:800;color:#fff;margin-bottom:14px; }
+.pillar-desc { font-size:14px;color:rgba(255,255,255,.7);line-height:1.75;margin-bottom:28px; }
+.pillar-items { display:flex;flex-direction:column;gap:10px;margin-bottom:32px; }
+.pillar-item { display:flex;align-items:center;gap:10px;font-size:13px;color:rgba(255,255,255,.8); }
+.pillar-item::before { content:'';width:5px;height:5px;border-radius:50%;background:rgba(255,255,255,.4);flex-shrink:0; }
+.pillar-links { display:flex;gap:16px;flex-wrap:wrap; }
+.pillar-link { display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:700;color:#fff;text-decoration:none;border-bottom:1px solid rgba(255,255,255,.3);padding-bottom:2px;transition:border-color .2s; }
+.pillar-link:hover { border-color:#fff; }
+.pillar-mention { font-size:12px;color:rgba(255,255,255,.35);margin-top:16px;font-style:italic; }
+@media(max-width:900px){
+  .pillars-grid { grid-template-columns:1fr; }
+}
+</style>
+
+<!-- ══ PILIERS ══ -->
+<section style="background:#fff" id="offres">
+  <div class="si">
+    <div class="tag tag-green"><span>Ce que nous faisons</span></div>
+    <h2>Deux piliers,<br/>une vision <em>intégrée</em></h2>
+    <p class="sub">Le conseil pose la stratégie. La plateforme l'exécute. Ensemble, ils transforment la gouvernance en avantage compétitif.</p>
+    <div class="pillars-grid">
+      <div class="pillar-card green">
+        <div class="pillar-icon">🧠</div>
+        <div class="pillar-tag">Pilier 1</div>
+        <div class="pillar-title">Conseil stratégique</div>
+        <div class="pillar-desc">Nos experts vous accompagnent de la définition de votre stratégie de gouvernance jusqu'à sa mise en œuvre opérationnelle.</div>
+        <div class="pillar-items">
+          <div class="pillar-item">Diagnostic et audit de maturité SI</div>
+          <div class="pillar-item">Gouvernance, risques et conformité (GRC)</div>
+          <div class="pillar-item">Cybersécurité et plan de continuité</div>
+          <div class="pillar-item">Schéma directeur SI</div>
+          <div class="pillar-item">Formation et sensibilisation</div>
+          <div class="pillar-item">Accompagnement à la certification ISO</div>
+        </div>
+        <div class="pillar-links">
+          <a href="#contact" class="pillar-link">Parler à un expert →</a>
+        </div>
+        <div class="pillar-mention">Premier échange offert · Sans engagement</div>
+      </div>
+      <div class="pillar-card blue">
+        <div class="pillar-icon">⚡</div>
+        <div class="pillar-tag">Pilier 2</div>
+        <div class="pillar-title">Plateforme Gëstu</div>
+        <div class="pillar-desc">Des outils SaaS conçus pour opérationnaliser vos engagements de gouvernance, en marque blanche pour vos clients.</div>
+        <div class="pillar-items">
+          <div class="pillar-item">Gëstu Control — Audit &amp; Conformité multi-référentiels</div>
+          <div class="pillar-item">Gëstu Risk — Cartographie des risques ISO 31000</div>
+          <div class="pillar-item">Espace client dédié par mission</div>
+          <div class="pillar-item">Plans d'action et rapports automatisés</div>
+          <div class="pillar-item">Multi-partenaires, white-label complet</div>
+        </div>
+        <div class="pillar-links">
+          <a href="/gestu-control" class="pillar-link">Gëstu Control →</a>
+          <a href="/gestu-risk" class="pillar-link">Gëstu Risk →</a>
+        </div>
+        <div class="pillar-mention">Démo guidée en 30 min · Mise en place en 48h</div>
+      </div>
+    </div>
+  </div>
+</section>

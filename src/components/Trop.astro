@@ -1,0 +1,58 @@
+<style>
+/* ── SECTION GÉNÉRIQUE ── */
+.si { max-width:1100px;margin:0 auto; }
+.tag { display:inline-flex;align-items:center;gap:8px;border-radius:20px;padding:5px 14px;margin-bottom:14px; }
+.tag-gold { background:rgba(201,168,76,.12);border:1px solid rgba(201,168,76,.2); }
+.tag-gold span { font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--gold); }
+.sub { font-size:16px;color:var(--muted);line-height:1.7;max-width:540px;margin-bottom:52px; }
+
+/* ── TROP ── */
+.trop-sec { background:var(--dark);position:relative;overflow:hidden;padding:100px 60px; }
+.trop-sec::before { content:'';position:absolute;inset:0;background-image:radial-gradient(circle,rgba(255,255,255,.05) 1px,transparent 1px);background-size:32px 32px;mask-image:radial-gradient(ellipse 100% 100% at 50% 50%,black 40%,transparent 100%); }
+.trop-intro { text-align:center;margin-bottom:56px;position:relative;z-index:1; }
+.trop-cards { display:grid;grid-template-columns:repeat(3,1fr);border:1px solid rgba(255,255,255,.08);border-radius:20px;overflow:hidden;position:relative;z-index:1; }
+.trop-card { padding:40px 36px;border-right:1px solid rgba(255,255,255,.08); }
+.trop-card:last-child { border-right:none; }
+.trop-n { font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.14em;color:rgba(255,255,255,.2);margin-bottom:18px; }
+.trop-word { font-family:'Playfair Display',serif;font-size:46px;font-weight:800;color:#fff;line-height:1;margin-bottom:10px; }
+.trop-word em { color:var(--gold);font-style:normal; }
+.trop-sub { font-size:13px;color:rgba(255,255,255,.45);line-height:1.7; }
+.trop-punch { text-align:center;margin-top:56px;position:relative;z-index:1; }
+.trop-punch p { font-family:'Playfair Display',serif;font-size:28px;font-weight:800;color:rgba(255,255,255,.18);line-height:1.45; }
+.trop-punch p em { color:var(--gold);font-style:normal;opacity:1; }
+
+@media(max-width:900px){
+  .trop-sec { padding:60px 24px; }
+  .trop-cards { grid-template-columns:1fr; }
+}
+</style>
+
+<section class="trop-sec">
+  <div class="si">
+    <div class="trop-intro">
+      <div class="tag tag-gold" style="display:inline-flex;margin-bottom:14px"><span>Le constat</span></div>
+      <h2 style="font-family:'Playfair Display',serif;font-size:42px;font-weight:800;color:#fff;letter-spacing:-.02em;margin-bottom:14px;line-height:1.15;">Les organisations ne manquent<br/>pas d'<em style="color:var(--gold);font-style:normal;">outils</em>.</h2>
+      <p class="sub" style="color:rgba(255,255,255,.5);margin:0 auto">Elles manquent de vision structurée et de contrôle réel.</p>
+    </div>
+    <div class="trop-cards">
+      <div class="trop-card">
+        <div class="trop-n">01</div>
+        <div class="trop-word">Trop de<br/><em>systèmes</em></div>
+        <p class="trop-sub">Outils déconnectés, données éparpillées, aucune vue consolidée. L'information existe — mais elle est invisible.</p>
+      </div>
+      <div class="trop-card">
+        <div class="trop-n">02</div>
+        <div class="trop-word">Trop de<br/><em>papier</em></div>
+        <p class="trop-sub">Conformité déclarative sans preuve réelle. Des audits qui rassurent sur le papier, mais ne résistent pas à l'examen réglementaire.</p>
+      </div>
+      <div class="trop-card">
+        <div class="trop-n">03</div>
+        <div class="trop-word">Trop de<br/><em>risques</em></div>
+        <p class="trop-sub">Non cartographiés, non priorisés, non traités. Des vulnérabilités qui existent depuis des mois sans que personne ne les ait formalisées.</p>
+      </div>
+    </div>
+    <div class="trop-punch">
+      <p>Et trop peu de <em>maîtrise.</em></p>
+    </div>
+  </div>
+</section>

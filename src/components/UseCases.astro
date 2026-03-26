@@ -1,0 +1,71 @@
+---
+---
+
+<style>
+/* ── USE CASES (carrousel horizontal) ── */
+.uc-track-wrap { overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;padding-bottom:16px;margin:0 -60px;padding-left:60px;padding-right:60px;scrollbar-width:none; }
+.uc-track-wrap::-webkit-scrollbar { display:none; }
+.uc-track { display:flex;gap:24px;width:max-content; }
+.uc-card { scroll-snap-align:start;width:340px;flex-shrink:0;border-radius:20px;background:#fff;border:1px solid rgba(0,0,0,.07);overflow:hidden;transition:transform .25s,box-shadow .25s;display:flex;flex-direction:column; }
+.uc-card:hover { transform:translateY(-6px);box-shadow:0 20px 48px rgba(0,0,0,.1); }
+.uc-card-top { height:6px;flex-shrink:0; }
+.uc-card.g .uc-card-top { background:linear-gradient(90deg,var(--green),var(--green3)); }
+.uc-card.b .uc-card-top { background:linear-gradient(90deg,var(--blue),#2575c4); }
+.uc-card.m .uc-card-top { background:linear-gradient(90deg,#7c3aed,#a855f7); }
+.uc-card.o .uc-card-top { background:linear-gradient(90deg,#d97706,#f59e0b); }
+.uc-card.r .uc-card-top { background:linear-gradient(90deg,#dc2626,#ef4444); }
+.uc-card.t .uc-card-top { background:linear-gradient(90deg,#0891b2,#06b6d4); }
+.uc-body { padding:28px;display:flex;flex-direction:column;flex:1; }
+.uc-emoji { font-size:28px;margin-bottom:12px; }
+.uc-problem { font-size:13px;font-style:italic;color:var(--muted);margin-bottom:14px;padding:12px 14px;background:rgba(0,0,0,.03);border-radius:10px;border-left:3px solid #e5e7eb;line-height:1.6; }
+.uc-solution { font-size:13px;color:var(--text);line-height:1.65;margin-bottom:16px;flex:1; }
+.uc-sector { font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);margin-bottom:6px; }
+.uc-title { font-family:'Playfair Display',serif;font-size:17px;font-weight:700;color:var(--text);margin-bottom:12px; }
+.uc-products { display:flex;gap:8px;flex-wrap:wrap;margin-top:auto;padding-top:16px;border-top:1px solid #f3f4f6; }
+.uc-product-link { font-size:10px;font-weight:700;text-decoration:none;color:var(--text);background:rgba(0,0,0,.05);padding:4px 12px;border-radius:20px;border:1px solid rgba(0,0,0,.08);transition:all .18s; }
+.uc-product-link:hover { background:var(--green);color:#fff;border-color:var(--green); }
+.uc-scroll-hint { display:flex;align-items:center;gap:8px;font-size:12px;color:var(--muted);margin-top:20px; }
+.uc-scroll-btns { display:flex;gap:8px;margin-top:20px; }
+.scroll-btn { width:40px;height:40px;border-radius:50%;border:1.5px solid #e5e7eb;background:#fff;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all .2s;color:var(--text); }
+.scroll-btn:hover { background:var(--green);border-color:var(--green);color:#fff; }
+@media(max-width:900px){
+  .uc-track-wrap { margin:0 -24px;padding-left:24px;padding-right:24px; }
+}
+</style>
+
+<!-- ══ USE CASES (CARROUSEL) ══ -->
+<section style="background:#fff" id="usecases">
+  <div class="si">
+    <div class="tag tag-blue"><span>Cas d'usage</span></div>
+    <h2>Ils font face aux mêmes<br/>enjeux que <em>vous</em></h2>
+    <p class="sub">Faites défiler pour voir comment Gëstu Group intervient concrètement selon votre secteur.</p>
+    <div class="uc-track-wrap" id="ucTrack">
+      <div class="uc-track">
+        <div class="uc-card g"><div class="uc-card-top"></div><div class="uc-body"><div class="uc-emoji">🏢</div><div class="uc-sector">Cabinet d'audit &amp; conseil</div><div class="uc-title">Industrialiser ses missions et gérer plusieurs clients depuis un outil unique</div><div class="uc-problem">On passe plus de temps à faire des rapports qu'à faire de l'audit.</div><div class="uc-solution">Espace client dédié, référentiels standardisés, rapports automatisés. Zéro Excel, 100% maîtrise. Un seul tableau de bord pour tous vos clients.</div><div class="uc-products"><a href="/gestu-control" class="uc-product-link">Gëstu Control →</a></div></div></div>
+        <div class="uc-card b"><div class="uc-card-top"></div><div class="uc-body"><div class="uc-emoji">🏦</div><div class="uc-sector">Banque &amp; Assurance</div><div class="uc-title">Piloter la conformité DORA, Bâle et RGPD sans se noyer</div><div class="uc-problem">On ne sait plus quelle réglementation s'applique à nous cette année.</div><div class="uc-solution">Cartographie réglementaire claire, gestion des risques opérationnels et reporting automatisé pour vos régulateurs et conseils d'administration.</div><div class="uc-products"><a href="/gestu-control" class="uc-product-link">Gëstu Control →</a><a href="/gestu-risk" class="uc-product-link">Gëstu Risk →</a></div></div></div>
+        <div class="uc-card m"><div class="uc-card-top"></div><div class="uc-body"><div class="uc-emoji">🏛️</div><div class="uc-sector">Secteur public &amp; collectivités</div><div class="uc-title">Sécuriser les SI publics et répondre aux exigences RGS et NIS2</div><div class="uc-problem">L'ANSSI nous a notifiés. On ne sait pas par où commencer.</div><div class="uc-solution">Diagnostic de maturité adapté au contexte public, plan de remédiation priorisé selon votre budget et accompagnement à la mise en conformité NIS2.</div><div class="uc-products"><a href="/gestu-control" class="uc-product-link">Gëstu Control →</a><a href="/gestu-risk" class="uc-product-link">Gëstu Risk →</a></div></div></div>
+        <div class="uc-card o"><div class="uc-card-top"></div><div class="uc-body"><div class="uc-emoji">🚀</div><div class="uc-sector">PME &amp; ETI en croissance</div><div class="uc-title">Première démarche ISO 27001 sans RSSI interne ni expertise dédiée</div><div class="uc-problem">Nos clients grands comptes nous imposent l'ISO 27001 pour renouveler le contrat.</div><div class="uc-solution">Accompagnement clé en main : conseil, outil, formation. De la première réunion jusqu'à la certification, sans avoir à recruter un RSSI à plein temps.</div><div class="uc-products"><a href="/gestu-control" class="uc-product-link">Gëstu Control →</a></div></div></div>
+        <div class="uc-card r"><div class="uc-card-top"></div><div class="uc-body"><div class="uc-emoji">🏥</div><div class="uc-sector">Santé</div><div class="uc-title">Protéger les données patients et se conformer aux exigences HDS</div><div class="uc-problem">Une fuite de données de santé nous exposerait à des sanctions CNIL massives.</div><div class="uc-solution">Audit ciblé des données sensibles, cartographie des risques HDS et plan de traitement priorisé selon votre niveau d'exposition réel.</div><div class="uc-products"><a href="/gestu-risk" class="uc-product-link">Gëstu Risk →</a></div></div></div>
+        <div class="uc-card t"><div class="uc-card-top"></div><div class="uc-body"><div class="uc-emoji">🎓</div><div class="uc-sector">Éducation &amp; Recherche</div><div class="uc-title">Sécuriser les données étudiantes avec des budgets IT contraints</div><div class="uc-problem">On n'a pas les moyens d'un RSSI mais on traite des milliers de données personnelles.</div><div class="uc-solution">Diagnostic rapide, plan d'action priorisé selon vos contraintes budgétaires et sensibilisation des équipes pédagogiques et administratives.</div><div class="uc-products"><a href="/gestu-control" class="uc-product-link">Gëstu Control →</a></div></div></div>
+      </div>
+    </div>
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-top:24px">
+      <div class="uc-scroll-hint">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        Faites défiler pour voir tous les secteurs
+      </div>
+      <div class="uc-scroll-btns">
+        <button class="scroll-btn" onclick="scrollUC(-1)">←</button>
+        <button class="scroll-btn" onclick="scrollUC(1)">→</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+// ── Carrousel use cases
+function scrollUC(dir) {
+  const track = document.getElementById('ucTrack');
+  track.scrollBy({ left: dir*380, behavior:'smooth' });
+}
+</script>
